@@ -19,17 +19,12 @@ var mentorsAges = {
 
 var mentorsNames = Object.keys(mentorsAges);
 
-//var mentorsNamedUppercased = mentorsNames.map(mentorNamedUppercased);
+var mentorsNamedUppercased = mentorsNames.map(mentorNamedUppercased);
 
-var mentorsNamedUppercased = [];
-for (var i = 0; i  < mentorsNames.length; i++) {
-  var nameUppercase = mentorNamedUppercased(mentorsNames[i]);
-  mentorsNamedUppercased.push(nameUppercase);
+function mentorNamedUppercased(mentorName) {
+  return mentorName.toUpperCase();
 }
 
-function mentorNamedUppercased(name) {
-  return name.toUpperCase();
-}
 
 // ONLY EDIT ABOVE THIS LINE
 

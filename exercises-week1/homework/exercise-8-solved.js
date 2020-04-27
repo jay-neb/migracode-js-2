@@ -76,7 +76,15 @@ console.log("Actual result:");
 //
 
 // WRITE YOUR CODE HERE
-//
+// Solution
+for (var i = 0; i < mentors.length; i++) {
+  var mentor = mentors[i];
+  if (mentor.job.city === "Barcelona" && mentor.skills.includes("React")) {
+    var sentence = "Hi, my name is " + mentor.firstName + " ";
+    sentence += mentor.lastName + ". I work in Barcelona and I know React.";
+    console.log(sentence);
+  }
+}
 //
 
 // DO NOT EDIT THIS CODE
@@ -92,7 +100,14 @@ animals.push("horse"); //["dog","cat","horse"]
 */
 
 // WRITE YOUR CODE HERE
-//
+// Solution
+for (var i = 0; i < mentors.length; i++) {
+  var mentor = mentors[i];
+  if (mentor.job.city === "Barcelona") {
+    mentor.class = "Jun1";
+    mentor.skills.push("SQL");
+  }
+}
 //
 
 // DO NOT EDIT THIS CODE
@@ -109,11 +124,17 @@ console.log();
 //
 
 /*
-3. Create an object function with the name .addSkill() to be able to add skills from it
+3. Create an object method with the name .addSkill() to be able to add skills from it
 */
 
 // WRITE YOUR CODE HERE
-//
+// Solution
+for (var i = 0; i < mentors.length; i++) {
+  var mentor = mentors[i];
+  mentor.addSkill = function (skill) {
+    this.skills.push(skill);
+  };
+}
 //
 
 // DO NOT EDIT THIS CODE
@@ -122,20 +143,23 @@ console.log("Expected result:\nHTML\nHTML\nHTML\nHTML");
 console.log("Actual result:");
 for (var i = 0; i < mentors.length; i++) {
   var mentor = mentors[i];
-  if (mentor.addSkill) {
-    mentor.addSkill("HTML");
-  }
+  mentor.addSkill("HTML");
   console.log(mentor.skills[mentor.skills.length - 1]);
 }
 console.log();
 //
 
 /*
-4. Create a function to add a skill to all members in a list of mentors
+4. Create a method to add a skill to all members in a list of mentors
 */
 
 // WRITE YOUR CODE HERE
+// Solution
 function addSkill(mentors, skill) {
+  for (var i = 0; i < mentors.length; i++) {
+    var mentor = mentors[i];
+    mentor.addSkill(skill);
+  }
 }
 //
 
@@ -152,12 +176,29 @@ console.log();
 //
 
 /*
-5. Create a function to remove a skill from all members in a list of mentors
-Hint: first create an object function .removeSkill() as in part 3
+5. Create a method to remove a skill from all members in a list of mentors
 */
 
 // WRITE YOUR CODE HERE
+// Solution
+// First loop through all the mentors to define a new object function called removeSkill
+for (var i = 0; i < mentors.length; i++) {
+  var mentor = mentors[i];
+  mentor.removeSkill = function (skill) {
+    // Get the index of the skill item in the skills array
+    var index = this.skills.indexOf(skill);
+    // If the index is not -1, remove the item from the array with the splice() function
+    if (index > -1) {
+      this.skills.splice(index, 1);
+    }
+  };
+}
+// Loop through all mentors and call the removeSkill object function
 function removeSkill(mentors, skill) {
+  for (var i = 0; i < mentors.length; i++) {
+    var mentor = mentors[i];
+    mentor.removeSkill(skill);
+  }
 }
 //
 
@@ -178,7 +219,24 @@ console.log();
 */
 
 // WRITE YOUR CODE HERE
-function getMentorNameWithMaxSkills() {
+// Solution
+function getMentorNameWithMaxSkills(mentors) {
+  // These two variables will store data about the mentor with the maximum skills
+  var maxSkills = 0;
+  // null is used for an object when it has no value, like using 0 for a number or "" for a string
+  var maxSkillsMentor = null;
+  // Loop through all the mentors
+  for (var i = 0; i < mentors.length; i++) {
+    var mentor = mentors[i];
+    // If the mentor has more skills than the current value of maxSkills
+    if (mentor.skills.length > maxSkills) {
+      // Set this mentor's skills to be the maxSkills
+      maxSkills = mentor.skills.length;
+      // and set this mentor to be one with maximum skills
+      maxSkillsMentor = mentor;
+    }
+  }
+  return maxSkillsMentor.firstName;
 }
 
 // DO NOT EDIT THIS CODE
@@ -190,11 +248,17 @@ console.log();
 //
 
 /*
-7. Create the function .addStudentLikes() that increments by one the attribute studentLikes
+7. Create the method .addStudentLikes() that increments by one the attribute studentLikes
 */
 
 // WRITE YOUR CODE HERE
-//
+// Solution
+for (var i = 0; i < mentors.length; i++) {
+  var mentor = mentors[i];
+  mentor.addStudentLikes = function () {
+    this.studentLikes += 1;
+  };
+}
 //
 
 // DO NOT EDIT THIS CODE
@@ -207,9 +271,7 @@ console.log(1);
 console.log("Actual result:");
 for (var i = 0; i < mentors.length; i++) {
   var mentor = mentors[i];
-  if (mentor.studentLikes) {
-    mentor.addStudentLikes();
-  }
+  mentor.addStudentLikes();
   console.log(mentor.studentLikes);
 }
 console.log();
@@ -220,7 +282,12 @@ console.log();
 */
 
 // WRITE YOUR CODE HERE
+// Solution
 function addStudentLikes(mentors) {
+  for (var i = 0; i < mentors.length; i++) {
+    var mentor = mentors[i];
+    mentor.addStudentLikes();
+  }
 }
 //
 

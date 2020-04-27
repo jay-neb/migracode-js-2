@@ -17,13 +17,18 @@ var coffeeMachine = {
     },
     insertedAmount: 0,
     insertMoney: function(amount) {
+        // Set the inserted amount variable to the amount that was inserted
         this.insertedAmount = amount;
     },
     getCoffee: function(coffee) {
+        // Since coffee is a string, for example "blackCoffee", the price needs to be obtained using the [] notation for an object
+        // Because getting this.prices.coffee would try to look for the "coffee" key in the prices object, which does not exist
         var price = this.prices[coffee];
+        // If the inserted amount is enough, return the coffee
         if (this.insertedAmount >= price) {
             return "Please take your " + coffee;
         }
+        // Otherwise, return a message saying there is not enough money
         else {
             return "Sorry you don't have enough money for a " + coffee;
         }

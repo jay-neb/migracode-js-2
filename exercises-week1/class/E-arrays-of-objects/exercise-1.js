@@ -24,20 +24,25 @@ DO NOT EDIT ANYTHING ABOVE THIS LINE
 WRITE YOUR CODE BELOW
 */
 
+// 1)
 var persons = [person1, person2, person3];
+//
+
+// 2)
+var personNames = persons.map(getName);
 
 function getName(person) {
     return person.name;
 }
+//
 
-var personNames = persons.map(getName);
-
+// 3)
 function isYoungerThan28YearsOld(person) {
     return person.age < 28;
 }
 
 var personsYoungerThan28YearsOld = persons.filter(isYoungerThan28YearsOld);
-
+//
 
 /*
 DO NOT EDIT ANYTHING BELOW THIS LINE

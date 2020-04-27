@@ -39,28 +39,35 @@ var writers = [
   },
 ];
 
-for (var i = 0; i < writers.length; i++) {
-  if (writer.alive) {
-    var writer = writers[i];
-    var sentence = getWriterSentence(writer);
-    console.log(sentence);
-  }
-}
-
-function getWriterSentence(writer) {
-  
-  return sentence;
-}
-
 /*
 If you want an extra challenge, only `console.log()` the writers that are alive.
 */
 
+// Loop through all the writers
+for (var i = 0; i < writers.length; i++) {
+  var writer = writers[i];
+  // If writer.alive is true, get the print message and console.log() it
+  if (writer.alive) {
+    var writer = writers[i];
+    var message = getPrintMessage(writer);
+    console.log(message);
+  }
+}
+
+function getPrintMessage(writer) {
+  // The message is split in 3 lines so that the code is easier to read
+  var message = "Hi, my name is " + writer.firstName + " ";
+  message += writer.lastName + ". I am " + writer.age;
+  message += " years old, and work as a " + writer.occupation + ".";
+  return message;
+}
+
+console.log();
+
+// NOTE: Another approach would be to use forEach like this:
 writers.forEach(function(writer) {
   if (writer.alive) {
-    var sentence = "Hi, my name is " + writer.firstName + " ";
-    sentence += writer.lastName + ". I am " + writer.age;
-    sentence += " years old, and work as a " + writer.occupation + ".";
-    console.log(sentence);
+    var message = getPrintMessage(writer);
+    console.log(message);
   }
 });

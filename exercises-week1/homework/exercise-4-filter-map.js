@@ -54,79 +54,43 @@ DO NOT EDIT ANYTHING ABOVE THIS LINE
 WRITE YOUR CODE BELOW
 */
 
-
 var restaurantFinderApplication = {
     applicationName: "Restaurant Finder",
     applicationVersion: "1.0",
     restaurants: restaurants,
     findAvailableRestaurants: function(numberOfPeople) {
-        var availableRestaurants = [];
-        for (var i = 0; i < this.restaurants.length; i++) {
-            var restaurant = this.restaurants[i];
+        // Step 1: Use the filter function to get all objects of restaurants that have available seats
+        var availableRestaurants = this.restaurants.filter(function (restaurant) {
             var availableSeats = restaurant.totalSeats - restaurant.numberOfCustomers;
-            if (availableSeats >= numberOfPeople) {
-                availableRestaurants.push(restaurant.name);
-            }
-        }
-        return availableRestaurants;
+            return availableSeats >= numberOfPeople;
+        });
+        // Step 2: Use the map function to get all restaurant names that are available
+        var availableRestaurantNames = availableRestaurants.map(function (restaurant) {
+            return restaurant.name;
+        });
+        return availableRestaurantNames;
     },
     findRestaurantServingDish: function(dishName) {
-        var restaurantsServingDish = [];
-        for (var i = 0; i < this.restaurants.length; i++) {
-            var restaurant = this.restaurants[i];
-            if (restaurant.menu.includes(dishName)) {
-                restaurantsServingDish.push(restaurant.name);
-            }
-        }
-        return restaurantsServingDish;
+        // Step 1: Use the filter function to get all objects of restaurants that serve the dish
+        var restaurantsServingDish = this.restaurants.filter(function (restaurant) {
+            return restaurant.menu.includes(dishName);
+        });
+        // Step 2: Use the map function to get all restaurant names that serve the dish
+        var restaurantNamesServingDish = restaurantsServingDish.map(function (restaurant) {
+            return restaurant.name;
+        });
+        return restaurantNamesServingDish;
     },
     countNumberOfRestaurantsInArea: function(area) {
-        // Option 1: For loop
-        var restaurantsInArea = [];
-        for (var i = 0; i < this.restaurants.length; i++) {
-            var restaurant = restaurants[i];
-            if (restaurant.address.area === area) {
-                restaurantsInArea.push(restaurant);
-            }
-        }
-
-        // Option 2: Filter function
-        var restaurantsInArea = this.restaurants.filter(rest => rest.address.area === area);
-
-        return restaurantsInArea.length;
+        // Use the filter function to get all objects of restaurants in the area
+        var restaurantsInArea = this.restaurants.filter(function (restaurant) {
+            return restaurant.address.area === area;
+        });
+        // Get the number of restaurants in the area by getting the array length
+        var numberOfRestaurantsInArea = restaurantsInArea.length;
+        return numberOfRestaurantsInArea;
     }
 };
-
-
-// var availableRestaurants = [];
-// for (var i = 0; i < this.restaurants.length; i++) {
-//     var restaurant = this.restaurants[i];
-//     var availableSeats = restaurant.totalSeats - restaurant.numberOfCustomers;
-//     if (availableSeats >= numberOfPeople) {
-//         availableRestaurants.push(restaurant.name);
-//     }
-// }
-// return availableRestaurants;
-
-
-// var restaurantsServingDish = [];
-// for (var i = 0; i < this.restaurants.length; i++) {
-//     var restaurant = this.restaurants[i];
-//     if (restaurant.menu.indexOf(dishName) >= 0) {
-//         restaurantsServingDish.push(restaurant.name);
-//     }
-// }
-// return restaurantsServingDish;
-
-// var restaurantsInArea = [];
-// for (var i = 0; i < this.restaurants.length; i++) {
-//     var restaurant = this.restaurants[i];
-//     var restaurantArea = restaurant.address.area;
-//     if (restaurantArea === area) {
-//         restaurantsInArea.push(restaurant);
-//     }
-// }
-// return restaurantsInArea.length;
 
 /*
 DO NOT EDIT ANYTHING BELOW THIS LINE

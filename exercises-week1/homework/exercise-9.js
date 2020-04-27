@@ -18,13 +18,12 @@ id is a unique number that identifies each product
 
 2. Create a function addToShoppingCart to add a product to the shopping cart list giving the product id,
 the function will add the product to the selectedProduct list, and add the price to the totalPrice
+NOTE: If there is not enough stock, product cannot be added to the shopping cart
 
 3. Create the function removeFrom ShoppingCart to remove a product that a client does not like anymore
 
 4. Create the function shop, the function will empty the list and set 0 in the totalPrice of the shopping cart
 In addition will subtract 1 in the product stock of bought products
-
-5. If there is not enough stock, product cannot be added to the shopping cart
 */
 
 var products = [];
@@ -54,6 +53,7 @@ var product4 = {
   stock: 30
 };
 
+// Part 1
 products.push(product1);
 products.push(product2);
 products.push(product3);
@@ -64,14 +64,17 @@ var shoppingCart = {
   selectedProducts: []
 };
 
+// Part 2
 function addToShoppingCart(id) {
   var product = getProduct(id);
+  // If the product is in stock, add to the shopping cart and add the price
   if (product.stock > 0) {
     shoppingCart.selectedProducts.push(product);
     shoppingCart.totalPrice += product.price;
   }
 }
 
+// This function gets a product from the products array given the product id
 function getProduct(id) {
   for (var i = 0; i < products.length; i++) {
     var product = products[i];
@@ -81,33 +84,30 @@ function getProduct(id) {
   }
 }
 
+// Part 3
 function removeFromShoppingCart(id) {
-  // Option 1
-  var selectedProducts = shoppingCart.selectedProducts;
-  for (var i = selectedProducts.length - 1; i >= 0; i--) {
-    var selectedProduct = selectedProducts[i];
-    if (selectedProduct.id === id) {
-      selectedProducts.splice(i, 1);
-      shoppingCart.totalPrice -= selectedProduct.price;
-    }
+  var product = getProduct(id);
+  // First get the index of the product from the selected products
+  var index = shoppingCart.selectedProducts.indexOf(product);
+  // If the index is more than -1 (i.e. the product is in the array)
+  // remove it using the splice function and subtract the price
+  if (index > -1) {
+    shoppingCart.selectedProducts.splice(index, 1);
+    shoppingCart.totalPrice -= product.price;
   }
-
-  // Option 2
-  // var product = getProduct(id);
-  // var index = shoppingCart.selectedProducts.indexOf(product);
-  // if (index >= 0) {
-  //   shoppingCart.selectedProducts.splice(index, 1);
-  //   shoppingCart.totalPrice -= product.price;
-  // }
 }
 
 function shop() {
   var selectedProducts = shoppingCart.selectedProducts;
+  // Loop through all the selected products
   for (var i = 0; i < selectedProducts.length; i++) {
     var selectedProduct = selectedProducts[i];
+    // Get the product from the products array using the id
     var product = getProduct(selectedProduct.id);
+    // Decrease the stock by 1
     product.stock--;
   }
+  // Reset the shopping cart variables because it's now empty
   shoppingCart.selectedProducts = [];
   shoppingCart.totalPrice = 0;
 }
@@ -115,38 +115,26 @@ function shop() {
 //results
 addToShoppingCart(1);
 console.log("Step 1");
-console.log("Total Price = " + shoppingCart.totalPrice);
+console.log("Total Price = " + shoppingCart.totalPrice.toFixed(2));
 console.log("Number of Elements = " + shoppingCart.selectedProducts.length);
 console.log("Name of Elements = " + shoppingCart.selectedProducts.map(p=>p.name));
 addToShoppingCart(2);
 console.log("Step 2");
-console.log("Total Price = " + shoppingCart.totalPrice);
+console.log("Total Price = " + shoppingCart.totalPrice.toFixed(2));
 console.log("Number of Elements = " + shoppingCart.selectedProducts.length);
 console.log("Name of Elements = " + shoppingCart.selectedProducts.map(p=>p.name));
 addToShoppingCart(4);
 console.log("Step 3");
-console.log("Total Price = " + shoppingCart.totalPrice);
+console.log("Total Price = " + shoppingCart.totalPrice.toFixed(2));
 console.log("Number of Elements = " + shoppingCart.selectedProducts.length);
 console.log("Name of Elements = " + shoppingCart.selectedProducts.map(p=>p.name));
 removeFromShoppingCart(2);
 console.log("Step 4");
-console.log("Total Price = " + shoppingCart.totalPrice);
+console.log("Total Price = " + shoppingCart.totalPrice.toFixed(2));
 console.log("Number of Elements = " + shoppingCart.selectedProducts.length);
 console.log("Name of Elements = " + shoppingCart.selectedProducts.map(p=>p.name));
 shop();
 console.log("Step 5");
-console.log("Total Price = " + shoppingCart.totalPrice);
+console.log("Total Price = " + shoppingCart.totalPrice.toFixed(2));
 console.log("Number of Elements = " + shoppingCart.selectedProducts.length);
 console.log("Name of Elements = " + shoppingCart.selectedProducts.map(p=>p.name));
-
-
-/*
-function Product (id, name, price, stock) {
-  this.id= id;
-  this.name = name;
-  this.price = price;
-  this.stock = stock;
-}
-var product5 = new Product(5, "Laptop", 29.99, 20);
-products.push(product5);
-*/
