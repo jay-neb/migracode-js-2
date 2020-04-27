@@ -9,4 +9,6 @@ There are some exercises for which I am showing you 2 different ways of solving:
 * Homework Exercise 4
 * Homework Exercise 5
 
-**Homework Exercise 8** was quite unclear, so I have rewritten the exercise so that it prints expected result and actual result at each step. This new question file as at /homework/exercise-8.js. The solution to this exercise is at /homework/exercise-8-solved.js.
+**Homework Exercise 8** was quite unclear, so I have rewritten the exercise so that it prints expected result and actual result at each step. This new question file as at /homework/exercise-8.js. Please attempt it again if you found it unclear during the class.
+
+The solution to this exercise is at /homework/exercise-8-solved.js.
