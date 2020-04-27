@@ -5,7 +5,7 @@ This repository contains the exercises and solutions for the JS 2 module of Migr
 ## Notes about Week 1 Exercises
 
 There are some exercises for which I am showing you 2 different ways of solving: 1) with loops, 2) with filter and map functions. These exercises have 2 files, one explaining each way of solving:
-* From class: Exercise 2 from E: Arrays of Objects section
+* Class Exercise 2 from E: Arrays of Objects section
 * Homework Exercise 4
 * Homework Exercise 5
 
