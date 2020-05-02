@@ -1,5 +1,3 @@
-// Part 1
-
 function partOne() {
     var jumbotron = document.querySelector(".jumbotron");
     var donateBikeButton = document.querySelector(".btn.btn-primary.btn-lrg");
