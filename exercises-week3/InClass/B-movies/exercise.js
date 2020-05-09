@@ -90,12 +90,52 @@ function addMovie(newMovie) {
 }
 
 // Task 2C: Call showMovies, then addMovies & showMovies after 1 second, and then addMovies & showMovies 1 second after that.
+// showMovies();
+// setTimeout(function () {
+//   addMovie(movie1);
+//   showMovies();
+// }, 1000);
+// setTimeout(function () {
+//   addMovie(movie2);
+//   showMovies();
+// }, 2000);
+
+// addMovie(movie1);
+// addMovie(movie2);
 showMovies();
-setTimeout(function () {
-  addMovie(movie1);
-  showMovies();
-}, 1000);
-setTimeout(function () {
-  addMovie(movie2);
-  showMovies();
-}, 2000);
+
+// Task 3
+
+var saveButton = document.querySelector("#saveButton");
+saveButton.addEventListener("click", saveMovie);
+
+function saveMovie(event) {
+  var movieTitleInput = document.querySelector("#movieTitle");
+  var movieTitle = movieTitleInput.value;
+
+  var movieDirectorInput = document.querySelector("#movieDirector");
+  var movieDirector = movieDirectorInput.value;
+
+  var movieTypeInput = document.querySelector("#movieType");
+  var movieType = movieTypeInput.value;
+
+  var movieWatchedInput = document.querySelector("#movieWatched");
+  var movieWatched = movieWatchedInput.checked;
+  // var movieWatchedStr = movieWatchedInput.value;
+  // var movieWatched = movieWatchedStr == "true";
+
+  if (movieTitle && movieDirector && movieType) {
+    var movie = {
+      title: movieTitle,
+      director: movieDirector,
+      type: movieType,
+      haveWatched: movieWatched
+    };
+    console.log(movie);
+
+    addMovie(movie);
+    showMovies();
+  }
+
+  event.preventDefault();
+}

@@ -11,9 +11,46 @@ When you get the response from the server, print the current temperature in an <
 ================
 */
 
-// You can construct the URL to fetch from like this. The lat and lon values will come from the input value. 
-var lat = 35;
-var lon = 160;
-var url = "https://fcc-weather-api.glitch.me/api/current";
-url += "?lat=" + lat;
-url += "&lon=" + lon;
+var getButton = document.querySelector("#getButton");
+getButton.addEventListener("click", getWeatherData);
+
+function getWeatherData(event) {
+    var latitudeInput = document.querySelector("#latitude");
+    var latitude = latitudeInput.value;
+  
+    var longitudeInput = document.querySelector("#longitude");
+    var longitude = longitudeInput.value;
+
+    fetchWeatherData(latitude, longitude);
+    event.preventDefault();
+}
+
+function fetchWeatherData(latitude, longitude) {
+    var url = generateWeatherUrl(latitude, longitude);
+
+    fetch(url)
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(responseJson) {
+        var temp = responseJson.main.temp;
+        showTemperature(temp);
+    });
+}
+
+function generateWeatherUrl(latitude, longitude) {
+    var url = "https://fcc-weather-api.glitch.me/api/current";
+    url += "?lat=" + latitude;
+    url += "&lon=" + longitude;
+    return url;
+}
+
+function showTemperature(temperature) {
+    var mainDiv = document.querySelector("#main");
+    var tempHeader = document.createElement("h3");
+    mainDiv.appendChild(tempHeader);
+    tempHeader.innerText = temperature;
+}
+
+// Barcelona: 41.38, 2.17
+// London: 51.50, -0.12
